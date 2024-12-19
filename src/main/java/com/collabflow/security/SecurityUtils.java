@@ -1,8 +1,11 @@
 package com.collabflow.security;
 
+import com.collabflow.service.AuditListener;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
@@ -15,6 +18,8 @@ import org.springframework.security.oauth2.jwt.Jwt;
  * Utility class for Spring Security.
  */
 public final class SecurityUtils {
+
+    private static final Logger LOG = LoggerFactory.getLogger(AuditListener.class);
 
     public static final MacAlgorithm JWT_ALGORITHM = MacAlgorithm.HS512;
 
@@ -29,6 +34,8 @@ public final class SecurityUtils {
      */
     public static Optional<String> getCurrentUserLogin() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
+        LOG.debug("Current security context: {}", SecurityContextHolder.getContext().getAuthentication());
+
         return Optional.ofNullable(extractPrincipal(securityContext.getAuthentication()));
     }
 

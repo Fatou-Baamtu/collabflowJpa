@@ -46,6 +46,14 @@ public class CacheConfiguration {
             createCache(cm, com.collabflow.domain.User.class.getName());
             createCache(cm, com.collabflow.domain.Authority.class.getName());
             createCache(cm, com.collabflow.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.collabflow.domain.Project.class.getName());
+            createCache(cm, com.collabflow.domain.Project.class.getName() + ".tasks");
+            createCache(cm, com.collabflow.domain.Task.class.getName());
+            createCache(cm, com.collabflow.domain.Task.class.getName() + ".subTasks");
+            createCache(cm, com.collabflow.domain.Task.class.getName() + ".comments");
+            createCache(cm, com.collabflow.domain.SubTask.class.getName());
+            createCache(cm, com.collabflow.domain.Comment.class.getName());
+            createCache(cm, com.collabflow.domain.AuditLog.class.getName());
             // jhipster-needle-caffeine-add-entry
         };
     }

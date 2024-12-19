@@ -1,0 +1,28 @@
+{
+  "collabflowApp": {
+    "auditLog": {
+      "home": {
+        "title": "Audit Logs",
+        "refreshListLabel": "تحديث القائمة",
+        "createLabel": "إنشاء Audit Log جديد",
+        "createOrEditLabel": "إنشاء أو تعديل Audit Log",
+        "notFound": "لم يتم العثور على Audit Logs"
+      },
+      "created": "Audit Log جديد تم إنشاؤه بالمعرف {{ param }}",
+      "updated": "Audit Log تم تحديثه بالمعرف {{ param }}",
+      "deleted": "Audit Log تم حذفه بالمعرف {{ param }}",
+      "delete": {
+        "question": "هل أنت متأكد أنك تريد حذف Audit Log {{ id }}؟"
+      },
+      "detail": {
+        "title": "Audit Log"
+      },
+      "id": "ID",
+      "entity": "Entity",
+      "action": "Action",
+      "timestamp": "Timestamp",
+      "entityId": "Entity Id",
+      "user": "User"
+    }
+  }
+}

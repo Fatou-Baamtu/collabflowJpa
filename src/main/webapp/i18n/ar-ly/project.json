@@ -1,0 +1,29 @@
+{
+  "collabflowApp": {
+    "project": {
+      "home": {
+        "title": "Projects",
+        "refreshListLabel": "تحديث القائمة",
+        "createLabel": "إنشاء Project جديد",
+        "createOrEditLabel": "إنشاء أو تعديل Project",
+        "notFound": "لم يتم العثور على Projects"
+      },
+      "created": "Project جديد تم إنشاؤه بالمعرف {{ param }}",
+      "updated": "Project تم تحديثه بالمعرف {{ param }}",
+      "deleted": "Project تم حذفه بالمعرف {{ param }}",
+      "delete": {
+        "question": "هل أنت متأكد أنك تريد حذف Project {{ id }}؟"
+      },
+      "detail": {
+        "title": "Project"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "priority": "Priority",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "tasks": "Tasks"
+    }
+  }
+}

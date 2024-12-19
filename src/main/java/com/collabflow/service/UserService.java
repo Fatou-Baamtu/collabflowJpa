@@ -321,4 +321,21 @@ public class UserService {
             Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE)).evict(user.getEmail());
         }
     }
+
+    // Méthode pour trouver un utilisateur par login
+    public Optional<UserDTO> findByLogin(String login) {
+        LOG.debug("Request to find user by login: {}", login);
+        return userRepository
+            .findOneByLogin(login)
+            .map(user -> {
+                // Transformer User en UserDTO (si nécessaire)
+                UserDTO userDTO = new UserDTO();
+                userDTO.setId(user.getId());
+                userDTO.setLogin(user.getLogin());
+                userDTO.setFirstName(user.getFirstName());
+                userDTO.setLastName(user.getLastName());
+                // Ajoutez d'autres propriétés si nécessaire
+                return userDTO;
+            });
+    }
 }

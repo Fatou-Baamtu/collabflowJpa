@@ -1,0 +1,29 @@
+{
+  "collabflowApp": {
+    "subTask": {
+      "home": {
+        "title": "Sub Tasks",
+        "refreshListLabel": "تحديث القائمة",
+        "createLabel": "إنشاء Sub Task جديد",
+        "createOrEditLabel": "إنشاء أو تعديل Sub Task",
+        "notFound": "لم يتم العثور على Sub Tasks"
+      },
+      "created": "Sub Task جديد تم إنشاؤه بالمعرف {{ param }}",
+      "updated": "Sub Task تم تحديثه بالمعرف {{ param }}",
+      "deleted": "Sub Task تم حذفه بالمعرف {{ param }}",
+      "delete": {
+        "question": "هل أنت متأكد أنك تريد حذف Sub Task {{ id }}؟"
+      },
+      "detail": {
+        "title": "Sub Task"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "dueDate": "Due Date",
+      "assignee": "Assignee",
+      "task": "Task"
+    }
+  }
+}

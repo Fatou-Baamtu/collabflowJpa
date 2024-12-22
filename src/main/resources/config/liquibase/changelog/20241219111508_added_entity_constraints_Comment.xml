@@ -10,6 +10,13 @@
     -->
     <changeSet id="20241219111508-2" author="jhipster">
 
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="comment"
+                                 constraintName="fk_comment__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"
+                                 />
+
         <addForeignKeyConstraint baseColumnNames="task_id"
                                  baseTableName="comment"
                                  constraintName="fk_comment__task_id"

@@ -21,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tech.jhipster.security.RandomUtil;
 
@@ -323,18 +324,18 @@ public class UserService {
     }
 
     // Méthode pour trouver un utilisateur par login
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Optional<UserDTO> findByLogin(String login) {
         LOG.debug("Request to find user by login: {}", login);
         return userRepository
             .findOneByLogin(login)
             .map(user -> {
-                // Transformer User en UserDTO (si nécessaire)
                 UserDTO userDTO = new UserDTO();
                 userDTO.setId(user.getId());
                 userDTO.setLogin(user.getLogin());
                 userDTO.setFirstName(user.getFirstName());
                 userDTO.setLastName(user.getLastName());
-                // Ajoutez d'autres propriétés si nécessaire
+                LOG.debug("User found: {}", userDTO);
                 return userDTO;
             });
     }

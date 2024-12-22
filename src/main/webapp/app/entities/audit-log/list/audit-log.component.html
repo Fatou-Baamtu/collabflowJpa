@@ -86,7 +86,7 @@
                 <a [routerLink]="['/audit-log', auditLog.id, 'view']">{{ auditLog.id }}</a>
               </td>
               <td [jhiTranslate]="'collabflowApp.EntityEnum.' + (auditLog.entity ?? 'null')">
-                {{ { null: '', PROJECT: 'Project', TASK: 'Task', SUB_TASK: 'SubTask', COMMENT: 'COMMENT' }[auditLog.entity ?? 'null'] }}
+                {{ { null: '', PROJECT: 'PROJECT', TASK: 'TASK', SUB_TASK: 'SUB_TASK', COMMENT: 'COMMENT' }[auditLog.entity ?? 'null'] }}
               </td>
               <td [jhiTranslate]="'collabflowApp.ActionEnum.' + (auditLog.action ?? 'null')">
                 {{ { null: '', CREATED: 'CREATED', UPDATED: 'UPDATED', DELETED: 'DELETED' }[auditLog.action ?? 'null'] }}

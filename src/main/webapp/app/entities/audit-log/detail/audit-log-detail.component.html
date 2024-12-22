@@ -18,7 +18,7 @@
           <dt><span jhiTranslate="collabflowApp.auditLog.entity">Entity</span></dt>
           <dd>
             <span [jhiTranslate]="'collabflowApp.EntityEnum.' + (auditLogRef.entity ?? 'null')">{{
-              { null: '', PROJECT: 'Project', TASK: 'Task', SUB_TASK: 'SubTask', COMMENT: 'COMMENT' }[auditLogRef.entity ?? 'null']
+              { null: '', PROJECT: 'PROJECT', TASK: 'TASK', SUB_TASK: 'SUB_TASK', COMMENT: 'COMMENT' }[auditLogRef.entity ?? 'null']
             }}</span>
           </dd>
           <dt><span jhiTranslate="collabflowApp.auditLog.action">Action</span></dt>

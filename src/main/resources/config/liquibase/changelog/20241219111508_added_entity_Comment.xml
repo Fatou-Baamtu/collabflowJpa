@@ -20,6 +20,9 @@
             <column name="created_at" type="${datetimeType}">
                 <constraints nullable="false" />
             </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="task_id" type="bigint">
                 <constraints nullable="true" />
             </column>

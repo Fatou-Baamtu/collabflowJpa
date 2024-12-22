@@ -55,7 +55,7 @@ public class Task implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "task")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "task" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "user", "task" }, allowSetters = true)
     private Set<Comment> comments = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)

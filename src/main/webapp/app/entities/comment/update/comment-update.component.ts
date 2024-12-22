@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { IUser } from 'app/entities/user/user.model';
+import { UserService } from 'app/entities/user/service/user.service';
 import { ITask } from 'app/entities/task/task.model';
 import { TaskService } from 'app/entities/task/service/task.service';
 import { CommentService } from '../service/comment.service';
@@ -26,17 +28,21 @@ export class CommentUpdateComponent implements OnInit {
   isSaving = false;
   comment: IComment | null = null;
 
+  usersSharedCollection: IUser[] = [];
   tasksSharedCollection: ITask[] = [];
 
   protected dataUtils = inject(DataUtils);
   protected eventManager = inject(EventManager);
   protected commentService = inject(CommentService);
   protected commentFormService = inject(CommentFormService);
+  protected userService = inject(UserService);
   protected taskService = inject(TaskService);
   protected activatedRoute = inject(ActivatedRoute);
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   editForm: CommentFormGroup = this.commentFormService.createCommentFormGroup();
+
+  compareUser = (o1: IUser | null, o2: IUser | null): boolean => this.userService.compareUser(o1, o2);
 
   compareTask = (o1: ITask | null, o2: ITask | null): boolean => this.taskService.compareTask(o1, o2);
 
@@ -103,10 +109,17 @@ export class CommentUpdateComponent implements OnInit {
     this.comment = comment;
     this.commentFormService.resetForm(this.editForm, comment);
 
+    this.usersSharedCollection = this.userService.addUserToCollectionIfMissing<IUser>(this.usersSharedCollection, comment.user);
     this.tasksSharedCollection = this.taskService.addTaskToCollectionIfMissing<ITask>(this.tasksSharedCollection, comment.task);
   }
 
   protected loadRelationshipsOptions(): void {
+    this.userService
+      .query()
+      .pipe(map((res: HttpResponse<IUser[]>) => res.body ?? []))
+      .pipe(map((users: IUser[]) => this.userService.addUserToCollectionIfMissing<IUser>(users, this.comment?.user)))
+      .subscribe((users: IUser[]) => (this.usersSharedCollection = users));
+
     this.taskService
       .query()
       .pipe(map((res: HttpResponse<ITask[]>) => res.body ?? []))

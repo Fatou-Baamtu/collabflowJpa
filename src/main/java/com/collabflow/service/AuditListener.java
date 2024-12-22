@@ -66,6 +66,7 @@ public class AuditListener {
         SecurityUtils.getCurrentUserLogin()
             .ifPresentOrElse(
                 login -> {
+                    LOG.debug("Current user login: {}", login);
                     // Récupérer l'utilisateur complet
                     Optional<UserDTO> optionalUserDTO = getUserService().findByLogin(login);
                     if (optionalUserDTO.isPresent()) {

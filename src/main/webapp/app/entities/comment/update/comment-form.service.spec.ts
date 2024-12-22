@@ -22,6 +22,7 @@ describe('Comment Form Service', () => {
             id: expect.any(Object),
             content: expect.any(Object),
             createdAt: expect.any(Object),
+            user: expect.any(Object),
             task: expect.any(Object),
           }),
         );
@@ -35,6 +36,7 @@ describe('Comment Form Service', () => {
             id: expect.any(Object),
             content: expect.any(Object),
             createdAt: expect.any(Object),
+            user: expect.any(Object),
             task: expect.any(Object),
           }),
         );

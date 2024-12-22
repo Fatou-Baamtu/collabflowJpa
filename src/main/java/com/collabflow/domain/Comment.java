@@ -1,6 +1,5 @@
 package com.collabflow.domain;
 
-import com.collabflow.service.AuditListener;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -8,6 +7,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.boot.actuate.audit.listener.AuditListener;
 
 /**
  * A Comment.
@@ -34,6 +34,9 @@ public class Comment implements Serializable {
     @NotNull
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "subTasks", "comments", "assignee", "project" }, allowSetters = true)
@@ -78,6 +81,19 @@ public class Comment implements Serializable {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Comment user(User user) {
+        this.setUser(user);
+        return this;
     }
 
     public Task getTask() {

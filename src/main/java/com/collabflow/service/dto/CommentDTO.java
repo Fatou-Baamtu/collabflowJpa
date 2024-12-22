@@ -20,6 +20,8 @@ public class CommentDTO implements Serializable {
     @NotNull
     private Instant createdAt;
 
+    private UserDTO user;
+
     private TaskDTO task;
 
     public Long getId() {
@@ -44,6 +46,14 @@ public class CommentDTO implements Serializable {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 
     public TaskDTO getTask() {
@@ -82,6 +92,7 @@ public class CommentDTO implements Serializable {
             "id=" + getId() +
             ", content='" + getContent() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
+            ", user=" + getUser() +
             ", task=" + getTask() +
             "}";
     }

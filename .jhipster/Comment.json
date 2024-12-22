@@ -19,6 +19,14 @@
     }
   ],
   "name": "Comment",
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
   "searchEngine": "no"
 }

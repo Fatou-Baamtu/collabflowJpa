@@ -34,7 +34,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/collabflowjpa
     username: postgres
-    password: passer123
+    password: essai123
     hikari:
       poolName: Hikari
       auto-commit: false

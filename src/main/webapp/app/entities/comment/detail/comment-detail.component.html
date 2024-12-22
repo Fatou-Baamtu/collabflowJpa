@@ -23,6 +23,10 @@
           <dd>
             <span>{{ commentRef.createdAt | formatMediumDatetime }}</span>
           </dd>
+          <dt><span jhiTranslate="collabflowApp.comment.user">User</span></dt>
+          <dd>
+            <span>{{ commentRef.user?.id }}</span>
+          </dd>
           <dt><span jhiTranslate="collabflowApp.comment.task">Task</span></dt>
           <dd>
             @if (comment()!.task) {

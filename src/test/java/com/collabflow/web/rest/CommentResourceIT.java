@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.collabflow.IntegrationTest;
 import com.collabflow.domain.Comment;
 import com.collabflow.repository.CommentRepository;
+import com.collabflow.repository.UserRepository;
 import com.collabflow.service.dto.CommentDTO;
 import com.collabflow.service.mapper.CommentMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -53,6 +54,9 @@ class CommentResourceIT {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private CommentMapper commentMapper;

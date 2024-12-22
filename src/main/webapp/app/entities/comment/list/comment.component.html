@@ -56,6 +56,12 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="user.id">
+              <div class="d-flex">
+                <span jhiTranslate="collabflowApp.comment.user">User</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col" jhiSortBy="task.id">
               <div class="d-flex">
                 <span jhiTranslate="collabflowApp.comment.task">Task</span>
@@ -73,6 +79,9 @@
               </td>
               <td>{{ comment.content }}</td>
               <td>{{ comment.createdAt | formatMediumDatetime }}</td>
+              <td>
+                {{ comment.user?.id }}
+              </td>
               <td>
                 @if (comment.task) {
                   <div>

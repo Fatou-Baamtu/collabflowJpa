@@ -4,8 +4,8 @@ package com.collabflow.domain.enumeration;
  * The EntityEnum enumeration.
  */
 public enum EntityEnum {
-    Project,
-    Task,
-    SubTask,
-    Comment,
+    PROJECT,
+    TASK,
+    SUB_TASK,
+    COMMENT,
 }

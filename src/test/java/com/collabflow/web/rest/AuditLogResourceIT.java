@@ -39,8 +39,8 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class AuditLogResourceIT {
 
-    private static final EntityEnum DEFAULT_ENTITY = EntityEnum.Project;
-    private static final EntityEnum UPDATED_ENTITY = EntityEnum.Task;
+    private static final EntityEnum DEFAULT_ENTITY = EntityEnum.PROJECT;
+    private static final EntityEnum UPDATED_ENTITY = EntityEnum.TASK;
 
     private static final ActionEnum DEFAULT_ACTION = ActionEnum.CREATED;
     private static final ActionEnum UPDATED_ACTION = ActionEnum.UPDATED;

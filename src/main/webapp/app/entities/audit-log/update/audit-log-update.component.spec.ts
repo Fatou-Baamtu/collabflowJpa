@@ -49,10 +49,10 @@ describe('AuditLog Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call User query and add missing value', () => {
       const auditLog: IAuditLog = { id: 456 };
-      const user: IUser = { id: 20668 };
+      const user: IUser = { id: 10295 };
       auditLog.user = user;
 
-      const userCollection: IUser[] = [{ id: 8116 }];
+      const userCollection: IUser[] = [{ id: 5384 }];
       jest.spyOn(userService, 'query').mockReturnValue(of(new HttpResponse({ body: userCollection })));
       const additionalUsers = [user];
       const expectedCollection: IUser[] = [...additionalUsers, ...userCollection];
@@ -71,7 +71,7 @@ describe('AuditLog Management Update Component', () => {
 
     it('Should update editForm', () => {
       const auditLog: IAuditLog = { id: 456 };
-      const user: IUser = { id: 27328 };
+      const user: IUser = { id: 19663 };
       auditLog.user = user;
 
       activatedRoute.data = of({ auditLog });

@@ -4,10 +4,12 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, from, of } from 'rxjs';
 
+import { IUser } from 'app/entities/user/user.model';
+import { UserService } from 'app/entities/user/service/user.service';
 import { ITask } from 'app/entities/task/task.model';
 import { TaskService } from 'app/entities/task/service/task.service';
-import { CommentService } from '../service/comment.service';
 import { IComment } from '../comment.model';
+import { CommentService } from '../service/comment.service';
 import { CommentFormService } from './comment-form.service';
 
 import { CommentUpdateComponent } from './comment-update.component';
@@ -18,6 +20,7 @@ describe('Comment Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let commentFormService: CommentFormService;
   let commentService: CommentService;
+  let userService: UserService;
   let taskService: TaskService;
 
   beforeEach(() => {
@@ -41,12 +44,35 @@ describe('Comment Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     commentFormService = TestBed.inject(CommentFormService);
     commentService = TestBed.inject(CommentService);
+    userService = TestBed.inject(UserService);
     taskService = TestBed.inject(TaskService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
+    it('Should call User query and add missing value', () => {
+      const comment: IComment = { id: 456 };
+      const user: IUser = { id: 20668 };
+      comment.user = user;
+
+      const userCollection: IUser[] = [{ id: 8116 }];
+      jest.spyOn(userService, 'query').mockReturnValue(of(new HttpResponse({ body: userCollection })));
+      const additionalUsers = [user];
+      const expectedCollection: IUser[] = [...additionalUsers, ...userCollection];
+      jest.spyOn(userService, 'addUserToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ comment });
+      comp.ngOnInit();
+
+      expect(userService.query).toHaveBeenCalled();
+      expect(userService.addUserToCollectionIfMissing).toHaveBeenCalledWith(
+        userCollection,
+        ...additionalUsers.map(expect.objectContaining),
+      );
+      expect(comp.usersSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should call Task query and add missing value', () => {
       const comment: IComment = { id: 456 };
       const task: ITask = { id: 6148 };
@@ -71,12 +97,15 @@ describe('Comment Management Update Component', () => {
 
     it('Should update editForm', () => {
       const comment: IComment = { id: 456 };
+      const user: IUser = { id: 27328 };
+      comment.user = user;
       const task: ITask = { id: 11912 };
       comment.task = task;
 
       activatedRoute.data = of({ comment });
       comp.ngOnInit();
 
+      expect(comp.usersSharedCollection).toContain(user);
       expect(comp.tasksSharedCollection).toContain(task);
       expect(comp.comment).toEqual(comment);
     });
@@ -151,6 +180,16 @@ describe('Comment Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
+    describe('compareUser', () => {
+      it('Should forward to userService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(userService, 'compareUser');
+        comp.compareUser(entity, entity2);
+        expect(userService.compareUser).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
     describe('compareTask', () => {
       it('Should forward to taskService', () => {
         const entity = { id: 123 };
